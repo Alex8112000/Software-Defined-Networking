@@ -1,0 +1,4 @@
+all:
+  hosts:
+    host_01:
+      ansible_host: 10.0.2.24
