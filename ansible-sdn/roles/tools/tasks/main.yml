@@ -1,0 +1,14 @@
+---
+- name: Install Mininet
+  apt:
+    name: mininet
+    state: present
+    update_cache: yes
+
+- name: Install tools (xterm, curl)
+  apt:
+    name:
+      - xterm
+      - curl
+      - sshpass
+    state: present
