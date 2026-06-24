@@ -1,4 +1,7 @@
 all:
   hosts:
     host_01:
-      ansible_host: 10.0.2.24
+      ansible_host: 10.0.2.29
+      ansible_user: student
+      ansible_ssh_pass: S3cur!ty
+      ansible_become_pass: S3cur!ty

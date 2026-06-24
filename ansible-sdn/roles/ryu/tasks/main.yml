@@ -1,10 +1,16 @@
 ---
-- name: Create Ryu virtualenv
-  command: python3 -m venv /home/student/venvs/ryu
-  args:
-    creates: /home/student/venvs/ryu
+- name: Ryu Image bauen
+  community.docker.docker_container:
+    name: ryu-controller
+    source: build
+    build:
+      path: ./docker/ryu
 
-- name: Install Ryu in venv
-  shell: |
-    /home/student/venvs/ryu/bin/pip install --upgrade pip "setuptools<68" wheel
-    /home/student/venvs/ryu/bin/pip install ryu
+- name: Ryu Container starten
+  community.docker.docker_container:
+    name: ryu-controller
+    image: ryu-controller
+    state: started
+    network_mode: host
+    volumes:
+      - /home/student/Software-Defined-Networking:/mnt/Software-Defined-Networking

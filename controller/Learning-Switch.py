@@ -28,7 +28,10 @@ class PolicyLearningSwitch(app_manager.RyuApp):
     # YAML LADEN
     # ------------------------------------------------
     def load_policies(self):
-        policy_file = os.path.join(os.path.dirname(__file__), '../policies/policies-topo2/policies.yaml')
+        print("CWD:", os.getcwd())
+        print("__file__:", __file__)
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        policy_file = os.path.join(base_dir, '../policies/policies-topo2/policies.yaml')
 
         with open(policy_file) as f:
             self.policies = yaml.safe_load(f)
