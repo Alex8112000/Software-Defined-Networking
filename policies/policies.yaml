@@ -1,0 +1,40 @@
+acl:
+  - src_ip: "10.0.0.5"
+    dst_ip: "10.0.0.10"
+    action: "drop"
+
+global:
+  - type: "only_http_https"
+    enabled: false
+
+  - type: "restrict_ssh"
+    enabled: false
+    admin_host: 
+      - "10.0.0.1"
+
+steering:
+  - switch: 201
+    in_port: 1
+    out_port: [2, 3]
+
+  - switch: 201
+    in_port: 2
+    out_port: [2, 3]
+
+  - switch: 203
+    in_port: 1
+    out_port: [2]
+
+  - switch: 203
+    in_port: 2
+    out_port: [3]
+
+host:
+  - src_ip: "10.0.0.4"
+    action: "drop"
+
+  - src_ip: "10.0.0.1"
+    action: "redirect"
+    to_ip: "10.0.0.32"
+    to_mac: "00:00:00:00:00:32"
+    
