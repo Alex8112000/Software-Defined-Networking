@@ -1,0 +1,22 @@
+---
+- name: Install tools on host_01
+  hosts: host_01
+  become: yes
+  roles:
+    - tools
+
+  tasks:
+    - name: Clone SDN repository
+      become_user: student
+      git:
+        repo: https://github.com/Alex8112000/Software-Defined-Networking.git
+        dest: /home/student/Software-Defined-Networking
+        clone: yes
+        update: yes
+
+- name: Setup Ryu + SDN Repo on localhost
+  hosts: localhost
+  become: yes
+
+  roles:
+    - ryu
